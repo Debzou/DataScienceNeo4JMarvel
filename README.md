@@ -24,4 +24,4 @@ do this query in order to view which hero heros appear in publisher
 MATCH p=()-[r:RELTYPE]->() RETURN p
 ```
 
-![](screen.png)
+![](screen1.png)

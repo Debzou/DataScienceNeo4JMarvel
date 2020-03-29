@@ -3,7 +3,7 @@
 ## Installion
 
 ```bash
-pip install neo4j
+pip3 install neo4j
 pip3 install pandas
 ```
 

@@ -1,10 +1,13 @@
 # DataScienceNeo4JMarvel
 
-##installion
-{% filename %}pip3 install neo4j{% endfilename %}
-{% filename %}pip3 install pandas{% endfilename %}
+## Installion
 
-##Connect to the data base
+```bash
+pip install neo4j
+pip3 install pandas
+```
+
+## Connect to the data base
 change constant in the main.py
 
 ```python

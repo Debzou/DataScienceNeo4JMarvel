@@ -27,3 +27,7 @@ MATCH p=()-[r:RELTYPE]->() RETURN p
 ```
 
 ![](screen1.png)
+
+
+## export neo4j relationship in Gephi format 
+[use this application ](https://github.com/olir/gephi-neo4j-url-importer-plugin?fbclid=IwAR3eJKsiPIas7omgotnhEkVhEj-2E6YY-uf9vwLsaFDb90HF9Z9wftK8A7E)

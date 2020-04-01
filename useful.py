@@ -13,9 +13,6 @@ class Neo4j(object):
 
     def readCsvCreateObject(self,path):
         cql = ""
-        cql2 = ""
-        cql3 = ""
-        cqltot = ""
         data = pd.read_csv(path)
         #read row by row
         # create
@@ -27,12 +24,11 @@ class Neo4j(object):
             cql = "CREATE (%s:hero { id: %d , name : '%s' , gender : '%s' })"%(name,
             data.loc[i, "id"],name,data.loc[i, "Gender"])
             # query in order to create publisher if not exist
-            cql2 = "MERGE (%s:publisher { publisher: '%s'})"%(publisher,publisher)
+            cql += "MERGE (%s:publisher { publisher: '%s'})"%(publisher,publisher)
             # create the realtionship
-            cql3 = "CREATE (%s)-[r:RELTYPE]->(%s)"%(name,publisher)
-            cqltot = cql + cql2 + cql3
+            cql += "CREATE (%s)-[r:RELTYPE]->(%s)"%(name,publisher)            
             # send query
-            self.sendQuery(cqltot)
+            self.sendQuery(cql)
 
         
 

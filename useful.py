@@ -15,7 +15,12 @@ class Neo4j(object):
         cql = ""
         data = pd.read_csv(path)
         #read row by row
-        # create
+        
+        # create Male and female
+        cql = "CREATE (Male:gender { gender : 'Male'})"
+        
+        self.sendQuery(cql)
+        cql=""
         for i in range(len(data)) :
             # data clean
             name = data.loc[i, "name"].replace('-', '').replace(' ', '').replace('!', '').replace('.','').replace("'",'')
@@ -25,10 +30,20 @@ class Neo4j(object):
             data.loc[i, "id"],name,data.loc[i, "Gender"])
             # query in order to create publisher if not exist
             cql += "MERGE (%s:publisher { publisher: '%s'})"%(publisher,publisher)
-            # create the realtionship
-            cql += "CREATE (%s)-[r:APPEARED]->(%s)"%(name,publisher)            
+            # create a realtionship hero and publisher
+            cql += "CREATE (%s)-[r:APPEARED]->(%s)"%(name,publisher)    
+            
+            # create a relationship between hero and gender
+            if (data.loc[i, "Gender"]=="Male" or data.loc[i, "Gender"] =="Female"):
+                # query create sexe (male female and why not other)
+                cql += "MERGE (%s:gender { gender : '%s'})"%(data.loc[i, "Gender"],data.loc[i, "Gender"])
+                cql += "CREATE (%s)-[p:BE]->(%s)"%(name,data.loc[i, "Gender"])  
+            else:   
+                cql += "MERGE (other:gender { gender : 'other'})"
+                cql += "CREATE (%s)-[p:BE]->(other)"%(name)  
             # send query
             self.sendQuery(cql)
+            cql=""
 
         
 
@@ -41,7 +56,7 @@ class Neo4j(object):
             graphDB_Session.run(query)
 
     def clear(self):
-        query = "MATCH (n) DELETE n"
+        query = "MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r"
         # Execute the CQL query
         self.sendQuery(query)
 

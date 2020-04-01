@@ -23,7 +23,7 @@ Launch the main python script
 Do this query in order to view which heros appear in publishers
 
 ```cypher
-MATCH p=()-[r:RELTYPE]->() RETURN p
+MATCH p=()-[r:APPEARED]->() RETURN p
 ```
 
 ![](screen1.png)

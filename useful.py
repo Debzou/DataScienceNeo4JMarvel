@@ -26,7 +26,7 @@ class Neo4j(object):
             # query in order to create publisher if not exist
             cql += "MERGE (%s:publisher { publisher: '%s'})"%(publisher,publisher)
             # create the realtionship
-            cql += "CREATE (%s)-[r:RELTYPE]->(%s)"%(name,publisher)            
+            cql += "CREATE (%s)-[r:APPEARED]->(%s)"%(name,publisher)            
             # send query
             self.sendQuery(cql)
 

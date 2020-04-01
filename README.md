@@ -19,6 +19,10 @@ PATH_CSV = "heroes_information.csv"
 ## Lauch the python script
 Launch the main python script
 
+```bash
+python3 main.py
+```
+
 ## Go to http://localhost:7474/browser/
 Do this query in order to view which heros appear in publishers
 
